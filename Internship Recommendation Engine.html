@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Internship Recommender</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="form-container">
+    <h2>Find Your Best Internship Match 💼</h2>
+    <form id="recommendationForm">
+      <label>Interests:</label>
+      <input type="text" name="interests" placeholder="AI, Web Development, etc." required />
+
+      <label>Skills:</label>
+      <input type="text" name="skills" placeholder="Python, Java, ML..." required />
+
+      <label>Previous Experience:</label>
+      <textarea name="experience" placeholder="Write your past experience here..."></textarea>
+
+      <button type="submit">Get Recommendations</button>
+    </form>
+
+    <div id="recommendationResult"></div>
+  </div>
+
+  <script>
+    document.getElementById("recommendationForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const form = e.target;
+      const interests = form.interests.value.toLowerCase();
+      const skills = form.skills.value.toLowerCase();
+
+      let recommendation = "General Internships";
+
+      if (interests.includes("ai") || skills.includes("python") || skills.includes("ml")) {
+        recommendation = "AI / Machine Learning Internships";
+      } else if (skills.includes("html") || skills.includes("javascript")) {
+        recommendation = "Web Development Internships";
+      } else if (skills.includes("java") || interests.includes("android")) {
+        recommendation = "Mobile App Development Internships";
+      }
+
+      document.getElementById("recommendationResult").innerHTML = `<p>✅ Recommended Domain: <strong>${recommendation}</strong></p>`;
+    });
+  </script>
+</body>
+</html>
